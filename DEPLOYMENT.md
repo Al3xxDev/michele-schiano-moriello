@@ -95,7 +95,7 @@ A pre-configured CI pipeline is located in `.github/workflows/ci.yml`.
 
 Whenever code is pushed to `main` or a Pull Request is submitted, GitHub Actions will:
 1. Check out the repository.
-2. Set up Node.js 22.x with npm caching.
+2. Set up Node.js 24.x with npm caching.
 3. Install dependencies via `npm ci`.
 4. Install Playwright browser binaries and system libraries (`chromium`).
 5. Execute `npm run build` to verify clean static site generation.
@@ -200,7 +200,7 @@ The project includes a root [netlify.toml](file:///home/alex/Projects/MicheleSch
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "22"
+  NODE_VERSION = "24"
 
 [[headers]]
   for = "/*"
