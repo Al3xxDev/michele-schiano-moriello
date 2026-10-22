@@ -1,5 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
+const PORT = process.env.PORT || '4321';
+
 export default defineConfig({
   testDir: './tests',
   timeout: 30000,
@@ -9,13 +11,13 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'list',
   use: {
-    baseURL: 'http://localhost:4321',
+    baseURL: `http://localhost:${PORT}`,
     trace: 'on-first-retry',
     viewport: { width: 1280, height: 720 },
   },
   webServer: {
     command: 'node scripts/serve.mjs',
-    url: 'http://localhost:4321',
+    url: `http://localhost:${PORT}`,
     reuseExistingServer: !process.env.CI,
   },
   projects: [

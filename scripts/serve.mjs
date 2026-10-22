@@ -2,7 +2,7 @@ import http from 'http';
 import fs from 'fs';
 import path from 'path';
 
-const PORT = 4321;
+const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 4321;
 const DIST_DIR = path.resolve('dist');
 
 const MIME_TYPES = {

@@ -69,7 +69,7 @@ Il progetto adotta una direzione artistica **architettonico-editoriale e cinemat
 ## 3. Requisiti e Comandi di Esecuzione
 
 ### Prerequisiti
-- **Node.js:** Versione >= 18 (testato con v24.21.0)
+- **Node.js:** Versione >= 22 (LTS >= 22.23.4, testato con v24.21.0)
 - **npm:** Versione >= 9
 
 ### Installazione
