@@ -1,0 +1,263 @@
+---
+import { Image } from 'astro:assets';
+import { siteData } from '../data/siteData';
+import heroImage from '../assets/images/Armonia-di-colori-e-funzionalita2.png';
+---
+
+<section class="hero-section" id="hero" aria-label="Introduzione dello studio">
+  <!-- Full-bleed background image optimized via Astro/Sharp -->
+  <div class="hero-media-wrapper">
+    <Image 
+      src={heroImage} 
+      alt="Spazio living contemporaneo progettato da Michele Schiano Moriello con zona pranzo e scorcio sulla cucina"
+      class="hero-bg-image"
+      widths={[480, 768, 1200, 1600, 2089]}
+      sizes="100vw"
+      loading="eager"
+      fetchpriority="high"
+      decoding="sync"
+    />
+    <div class="hero-scrim" aria-hidden="true"></div>
+  </div>
+
+  <div class="site-container hero-container">
+    <div class="hero-content">
+      <!-- Architectural Wordmark & Descriptor -->
+      <div class="hero-badge reveal-on-scroll">
+        <span class="badge-line" aria-hidden="true"></span>
+        <span class="badge-text">{siteData.hero.descriptor}</span>
+        <span class="badge-line" aria-hidden="true"></span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="hero-title reveal-on-scroll delay-100">
+        Spazi che raccontano <span class="highlight-serif">chi li abita.</span>
+      </h1>
+
+      <!-- Intro Subtitle -->
+      <p class="hero-subtext reveal-on-scroll delay-200">
+        {siteData.hero.subheadline}
+      </p>
+
+      <!-- Dual Cinematic CTAs -->
+      <div class="hero-actions reveal-on-scroll delay-300">
+        <a href="#progetto" class="btn btn-primary-dark hero-btn">
+          <span>{siteData.hero.primaryCta}</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <polyline points="19 12 12 19 5 12"></polyline>
+          </svg>
+        </a>
+
+        <a href="#contatti" class="btn btn-outline-light hero-btn">
+          <span>{siteData.hero.secondaryCta}</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Minimal Scroll Indicator -->
+    <a href="#manifesto" class="hero-scroll-indicator" aria-label="SCROLL - Scorri al manifesto progettuale">
+      <span class="scroll-label">SCROLL</span>
+      <span class="scroll-track" aria-hidden="true">
+        <span class="scroll-thumb"></span>
+      </span>
+    </a>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white);
+    overflow: hidden;
+    background-color: var(--color-carbon-black);
+  }
+
+  .hero-media-wrapper {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .hero-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+    transform: scale(1.02);
+    transition: transform 1.8s var(--ease-editorial);
+  }
+
+  /* Architectural Scrim Overlay */
+  .hero-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(12, 13, 15, 0.72) 0%,
+      rgba(12, 13, 15, 0.38) 35%,
+      rgba(12, 13, 15, 0.45) 60%,
+      rgba(12, 13, 15, 0.92) 100%
+    );
+  }
+
+  .hero-container {
+    position: relative;
+    z-index: 2;
+    padding-top: clamp(6rem, 14vh, 9rem);
+    padding-bottom: clamp(4rem, 10vh, 6rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+
+  .hero-content {
+    max-width: 960px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: clamp(1rem, 2.5vh, 1.75rem);
+    color: var(--color-stone-300);
+  }
+
+  .badge-line {
+    width: 32px;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+
+  .badge-text {
+    font-size: clamp(0.75rem, 0.25vw + 0.7rem, 0.875rem);
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--color-stone-300);
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 5.5vw + 1rem, 5.25rem);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--color-white);
+    margin-bottom: clamp(1.25rem, 3vh, 2rem);
+    text-wrap: balance;
+  }
+
+  .highlight-serif {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    color: #f7f0e8;
+  }
+
+  .hero-subtext {
+    font-size: clamp(1.0625rem, 1vw + 0.85rem, 1.25rem);
+    line-height: 1.55;
+    color: var(--color-stone-300);
+    max-width: 620px;
+    margin-bottom: clamp(2rem, 4vh, 3rem);
+    text-wrap: pretty;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .hero-btn {
+    min-width: 200px;
+  }
+
+  /* Scroll Indicator */
+  .hero-scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-stone-300);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .hero-scroll-indicator:hover {
+    color: var(--color-white);
+  }
+
+  .scroll-label {
+    font-size: 0.6875rem;
+    letter-spacing: 0.22em;
+    font-weight: 600;
+  }
+
+  .scroll-track {
+    width: 1px;
+    height: 36px;
+    background-color: rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scroll-thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: var(--color-terracotta);
+    animation: scrollAnim 2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  }
+
+  @keyframes scrollAnim {
+    0% {
+      transform: translateY(-100%);
+    }
+    50% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(200%);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero-actions {
+      flex-direction: column;
+      width: 100%;
+    }
+    .hero-btn {
+      width: 100%;
+    }
+    .hero-scroll-indicator {
+      display: none; /* Keep clean on small mobile viewports */
+    }
+  }
+</style>

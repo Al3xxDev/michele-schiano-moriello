@@ -1,0 +1,715 @@
+---
+import { Image } from 'astro:assets';
+import { siteData } from '../data/siteData';
+
+// Import local image assets for Astro/Sharp optimization
+import img1 from '../assets/images/Armonia-di-colori-e-funzionalita1.png';
+import img2 from '../assets/images/Armonia-di-colori-e-funzionalita2.png';
+import img3 from '../assets/images/Armonia-di-colori-e-funzionalita3.png';
+import img4 from '../assets/images/Armonia-di-colori-e-funzionalita4.png';
+import img5 from '../assets/images/Armonia-di-colori-e-funzionalita5.png';
+import img6 from '../assets/images/Armonia-di-colori-e-funzionalita6.png';
+import img7 from '../assets/images/Armonia-di-colori-e-funzionalita7.png';
+import img8 from '../assets/images/Armonia-di-colori-e-funzionalita8.png';
+import img9 from '../assets/images/Armonia-di-colori-e-funzionalita9.png';
+import img10 from '../assets/images/Armonia-di-colori-e-funzionalita10.png';
+import img11 from '../assets/images/Armonia-di-colori-e-funzionalita11.png';
+
+// Map metadata to asset
+const photoAssets = [
+  { ...siteData.photos[0], asset: img2, globalIdx: 0 },
+  { ...siteData.photos[1], asset: img3, globalIdx: 1 },
+  { ...siteData.photos[2], asset: img1, globalIdx: 2 },
+  { ...siteData.photos[3], asset: img4, globalIdx: 3 },
+  { ...siteData.photos[4], asset: img5, globalIdx: 4 },
+  { ...siteData.photos[5], asset: img6, globalIdx: 5 },
+  { ...siteData.photos[6], asset: img7, globalIdx: 6 },
+  { ...siteData.photos[7], asset: img8, globalIdx: 7 },
+  { ...siteData.photos[8], asset: img9, globalIdx: 8 },
+  { ...siteData.photos[9], asset: img10, globalIdx: 9 },
+  { ...siteData.photos[10], asset: img11, globalIdx: 10 },
+];
+---
+
+<section class="section-editorial-dark project-section" id="progetto" aria-label="Progetto in evidenza">
+  <div class="site-container">
+    <!-- Project Header & Editorial Statement -->
+    <div class="project-header">
+      <div class="project-meta-top reveal-on-scroll">
+        <span class="section-header-tag">Progetto in Evidenza</span>
+        <span class="project-category">{siteData.project.category}</span>
+      </div>
+
+      <div class="project-title-grid">
+        <h2 class="project-title reveal-on-scroll delay-100">
+          {siteData.project.title}
+        </h2>
+        <div class="project-lead-wrapper reveal-on-scroll delay-200">
+          <p class="project-lead">
+            {siteData.project.lead}
+          </p>
+          <p class="project-description">
+            {siteData.project.description}
+          </p>
+          <div class="project-specs">
+            <span class="spec-label">Ambito:</span>
+            <span class="spec-value">{siteData.project.scope}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Editorial Asymmetrical Photographic Journey -->
+    <div class="project-gallery-curation">
+      <!-- 1. The Panoramic Lead Statement (Image 2) -->
+      <div class="gallery-block block-lead reveal-on-scroll">
+        <figure class="gallery-figure">
+          <div class="img-zoom-container">
+            <Image 
+              src={photoAssets[0].asset} 
+              alt={photoAssets[0].alt}
+              widths={[640, 1024, 1600, 2089]}
+              sizes="(min-width: 1440px) 1400px, 95vw"
+              class="gallery-image"
+              loading="lazy"
+              decoding="async"
+            />
+            <button 
+              type="button" 
+              class="expand-trigger-btn" 
+              data-lightbox-index="0"
+              aria-label={`Ingrandisci a schermo intero: ${photoAssets[0].title}`}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <polyline points="9 21 3 21 3 15"></polyline>
+                <line x1="21" y1="3" x2="14" y2="10"></line>
+                <line x1="3" y1="21" x2="10" y2="14"></line>
+              </svg>
+            </button>
+          </div>
+          <figcaption class="gallery-caption">
+            <span class="caption-num">01</span>
+            <div class="caption-text">
+              <strong class="caption-title">{photoAssets[0].title}</strong>
+              <p>{photoAssets[0].caption}</p>
+            </div>
+          </figcaption>
+        </figure>
+      </div>
+
+      <!-- 2. Asymmetric Diptych: Living Room TV & Dining Portal (Image 1 & Image 2) -->
+      <div class="gallery-grid-2col">
+        <!-- Dining Portal (Image 1 - Portrait) -->
+        <div class="gallery-block reveal-on-scroll delay-100">
+          <figure class="gallery-figure">
+            <div class="img-zoom-container">
+              <Image 
+                src={photoAssets[2].asset} 
+                alt={photoAssets[2].alt}
+                widths={[480, 800, 1100]}
+                sizes="(min-width: 900px) 45vw, 95vw"
+                class="gallery-image"
+                loading="lazy"
+                decoding="async"
+              />
+              <button 
+                type="button" 
+                class="expand-trigger-btn" 
+                data-lightbox-index="2"
+                aria-label={`Ingrandisci a schermo intero: ${photoAssets[2].title}`}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <polyline points="9 21 3 21 3 15"></polyline>
+                  <line x1="21" y1="3" x2="14" y2="10"></line>
+                  <line x1="3" y1="21" x2="10" y2="14"></line>
+                </svg>
+              </button>
+            </div>
+            <figcaption class="gallery-caption">
+              <span class="caption-num">02</span>
+              <div class="caption-text">
+                <strong class="caption-title">{photoAssets[2].title}</strong>
+                <p>{photoAssets[2].caption}</p>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+
+        <!-- TV Cannettato Wall (Image 3 - Landscape) -->
+        <div class="gallery-block reveal-on-scroll delay-200">
+          <figure class="gallery-figure">
+            <div class="img-zoom-container">
+              <Image 
+                src={photoAssets[1].asset} 
+                alt={photoAssets[1].alt}
+                widths={[640, 1024, 1400]}
+                sizes="(min-width: 900px) 50vw, 95vw"
+                class="gallery-image"
+                loading="lazy"
+                decoding="async"
+              />
+              <button 
+                type="button" 
+                class="expand-trigger-btn" 
+                data-lightbox-index="1"
+                aria-label={`Ingrandisci a schermo intero: ${photoAssets[1].title}`}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <polyline points="9 21 3 21 3 15"></polyline>
+                  <line x1="21" y1="3" x2="14" y2="10"></line>
+                  <line x1="3" y1="21" x2="10" y2="14"></line>
+                </svg>
+              </button>
+            </div>
+            <figcaption class="gallery-caption">
+              <span class="caption-num">03</span>
+              <div class="caption-text">
+                <strong class="caption-title">{photoAssets[1].title}</strong>
+                <p>{photoAssets[1].caption}</p>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- 3. Culinary & Craft Details (Image 4 & Image 6) -->
+      <div class="gallery-grid-2col reverse-order">
+        <!-- Detail Sliding Doors (Image 6 - Portrait) -->
+        <div class="gallery-block reveal-on-scroll delay-100">
+          <figure class="gallery-figure">
+            <div class="img-zoom-container">
+              <Image 
+                src={photoAssets[5].asset} 
+                alt={photoAssets[5].alt}
+                widths={[480, 800, 1100]}
+                sizes="(min-width: 900px) 45vw, 95vw"
+                class="gallery-image"
+                loading="lazy"
+                decoding="async"
+              />
+              <button 
+                type="button" 
+                class="expand-trigger-btn" 
+                data-lightbox-index="5"
+                aria-label={`Ingrandisci a schermo intero: ${photoAssets[5].title}`}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <polyline points="9 21 3 21 3 15"></polyline>
+                  <line x1="21" y1="3" x2="14" y2="10"></line>
+                  <line x1="3" y1="21" x2="10" y2="14"></line>
+                </svg>
+              </button>
+            </div>
+            <figcaption class="gallery-caption">
+              <span class="caption-num">04</span>
+              <div class="caption-text">
+                <strong class="caption-title">{photoAssets[5].title}</strong>
+                <p>{photoAssets[5].caption}</p>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+
+        <!-- Kitchen Peninsula (Image 4 - Portrait) -->
+        <div class="gallery-block reveal-on-scroll delay-200">
+          <figure class="gallery-figure">
+            <div class="img-zoom-container">
+              <Image 
+                src={photoAssets[3].asset} 
+                alt={photoAssets[3].alt}
+                widths={[480, 800, 1100]}
+                sizes="(min-width: 900px) 45vw, 95vw"
+                class="gallery-image"
+                loading="lazy"
+                decoding="async"
+              />
+              <button 
+                type="button" 
+                class="expand-trigger-btn" 
+                data-lightbox-index="3"
+                aria-label={`Ingrandisci a schermo intero: ${photoAssets[3].title}`}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <polyline points="9 21 3 21 3 15"></polyline>
+                  <line x1="21" y1="3" x2="14" y2="10"></line>
+                  <line x1="3" y1="21" x2="10" y2="14"></line>
+                </svg>
+              </button>
+            </div>
+            <figcaption class="gallery-caption">
+              <span class="caption-num">05</span>
+              <div class="caption-text">
+                <strong class="caption-title">{photoAssets[3].title}</strong>
+                <p>{photoAssets[3].caption}</p>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- 4. Transitional Circulation & Work (Image 5 & Image 10) -->
+      <div class="gallery-grid-2col">
+        <!-- Corridor Art Gallery (Image 5) -->
+        <div class="gallery-block reveal-on-scroll delay-100">
+          <figure class="gallery-figure">
+            <div class="img-zoom-container">
+              <Image 
+                src={photoAssets[4].asset} 
+                alt={photoAssets[4].alt}
+                widths={[480, 800, 1100]}
+                sizes="(min-width: 900px) 45vw, 95vw"
+                class="gallery-image"
+                loading="lazy"
+                decoding="async"
+              />
+              <button 
+                type="button" 
+                class="expand-trigger-btn" 
+                data-lightbox-index="4"
+                aria-label={`Ingrandisci a schermo intero: ${photoAssets[4].title}`}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <polyline points="9 21 3 21 3 15"></polyline>
+                  <line x1="21" y1="3" x2="14" y2="10"></line>
+                  <line x1="3" y1="21" x2="10" y2="14"></line>
+                </svg>
+              </button>
+            </div>
+            <figcaption class="gallery-caption">
+              <span class="caption-num">06</span>
+              <div class="caption-text">
+                <strong class="caption-title">{photoAssets[4].title}</strong>
+                <p>{photoAssets[4].caption}</p>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+
+        <!-- Home Office (Image 10) -->
+        <div class="gallery-block reveal-on-scroll delay-200">
+          <figure class="gallery-figure">
+            <div class="img-zoom-container">
+              <Image 
+                src={photoAssets[9].asset} 
+                alt={photoAssets[9].alt}
+                widths={[480, 800, 1100]}
+                sizes="(min-width: 900px) 45vw, 95vw"
+                class="gallery-image"
+                loading="lazy"
+                decoding="async"
+              />
+              <button 
+                type="button" 
+                class="expand-trigger-btn" 
+                data-lightbox-index="9"
+                aria-label={`Ingrandisci a schermo intero: ${photoAssets[9].title}`}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <polyline points="9 21 3 21 3 15"></polyline>
+                  <line x1="21" y1="3" x2="14" y2="10"></line>
+                  <line x1="3" y1="21" x2="10" y2="14"></line>
+                </svg>
+              </button>
+            </div>
+            <figcaption class="gallery-caption">
+              <span class="caption-num">07</span>
+              <div class="caption-text">
+                <strong class="caption-title">{photoAssets[9].title}</strong>
+                <p>{photoAssets[9].caption}</p>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- 5. Master Suite Suite & Bed (Image 7 & Image 8) -->
+      <div class="gallery-grid-unequal">
+        <!-- Master Bedroom Panoramic (Image 7 - Wide Landscape) -->
+        <div class="gallery-block span-wide reveal-on-scroll delay-100">
+          <figure class="gallery-figure">
+            <div class="img-zoom-container">
+              <Image 
+                src={photoAssets[6].asset} 
+                alt={photoAssets[6].alt}
+                widths={[640, 1024, 1600]}
+                sizes="(min-width: 900px) 60vw, 95vw"
+                class="gallery-image"
+                loading="lazy"
+                decoding="async"
+              />
+              <button 
+                type="button" 
+                class="expand-trigger-btn" 
+                data-lightbox-index="6"
+                aria-label={`Ingrandisci a schermo intero: ${photoAssets[6].title}`}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <polyline points="9 21 3 21 3 15"></polyline>
+                  <line x1="21" y1="3" x2="14" y2="10"></line>
+                  <line x1="3" y1="21" x2="10" y2="14"></line>
+                </svg>
+              </button>
+            </div>
+            <figcaption class="gallery-caption">
+              <span class="caption-num">08</span>
+              <div class="caption-text">
+                <strong class="caption-title">{photoAssets[6].title}</strong>
+                <p>{photoAssets[6].caption}</p>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+
+        <!-- Bed Alcove (Image 8 - Portrait) -->
+        <div class="gallery-block span-narrow reveal-on-scroll delay-200">
+          <figure class="gallery-figure">
+            <div class="img-zoom-container">
+              <Image 
+                src={photoAssets[7].asset} 
+                alt={photoAssets[7].alt}
+                widths={[480, 800, 1100]}
+                sizes="(min-width: 900px) 35vw, 95vw"
+                class="gallery-image"
+                loading="lazy"
+                decoding="async"
+              />
+              <button 
+                type="button" 
+                class="expand-trigger-btn" 
+                data-lightbox-index="7"
+                aria-label={`Ingrandisci a schermo intero: ${photoAssets[7].title}`}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <polyline points="9 21 3 21 3 15"></polyline>
+                  <line x1="21" y1="3" x2="14" y2="10"></line>
+                  <line x1="3" y1="21" x2="10" y2="14"></line>
+                </svg>
+              </button>
+            </div>
+            <figcaption class="gallery-caption">
+              <span class="caption-num">09</span>
+              <div class="caption-text">
+                <strong class="caption-title">{photoAssets[7].title}</strong>
+                <p>{photoAssets[7].caption}</p>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- 6. Architectural Bathrooms (Image 9 & Image 11) -->
+      <div class="gallery-grid-2col">
+        <!-- Terracotta Vanity (Image 9) -->
+        <div class="gallery-block reveal-on-scroll delay-100">
+          <figure class="gallery-figure">
+            <div class="img-zoom-container">
+              <Image 
+                src={photoAssets[8].asset} 
+                alt={photoAssets[8].alt}
+                widths={[480, 800, 1100]}
+                sizes="(min-width: 900px) 45vw, 95vw"
+                class="gallery-image"
+                loading="lazy"
+                decoding="async"
+              />
+              <button 
+                type="button" 
+                class="expand-trigger-btn" 
+                data-lightbox-index="8"
+                aria-label={`Ingrandisci a schermo intero: ${photoAssets[8].title}`}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <polyline points="9 21 3 21 3 15"></polyline>
+                  <line x1="21" y1="3" x2="14" y2="10"></line>
+                  <line x1="3" y1="21" x2="10" y2="14"></line>
+                </svg>
+              </button>
+            </div>
+            <figcaption class="gallery-caption">
+              <span class="caption-num">10</span>
+              <div class="caption-text">
+                <strong class="caption-title">{photoAssets[8].title}</strong>
+                <p>{photoAssets[8].caption}</p>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+
+        <!-- Fluted Vanity Ensuite (Image 11) -->
+        <div class="gallery-block reveal-on-scroll delay-200">
+          <figure class="gallery-figure">
+            <div class="img-zoom-container">
+              <Image 
+                src={photoAssets[10].asset} 
+                alt={photoAssets[10].alt}
+                widths={[480, 800, 1100]}
+                sizes="(min-width: 900px) 45vw, 95vw"
+                class="gallery-image"
+                loading="lazy"
+                decoding="async"
+              />
+              <button 
+                type="button" 
+                class="expand-trigger-btn" 
+                data-lightbox-index="10"
+                aria-label={`Ingrandisci a schermo intero: ${photoAssets[10].title}`}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <polyline points="9 21 3 21 3 15"></polyline>
+                  <line x1="21" y1="3" x2="14" y2="10"></line>
+                  <line x1="3" y1="21" x2="10" y2="14"></line>
+                </svg>
+              </button>
+            </div>
+            <figcaption class="gallery-caption">
+              <span class="caption-num">11</span>
+              <div class="caption-text">
+                <strong class="caption-title">{photoAssets[10].title}</strong>
+                <p>{photoAssets[10].caption}</p>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .project-section {
+    position: relative;
+    border-top: 1px solid var(--color-carbon-border);
+  }
+
+  .project-header {
+    margin-bottom: clamp(3rem, 6vw, 6rem);
+  }
+
+  .project-meta-top {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .project-category {
+    font-size: 0.8125rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-stone-500);
+  }
+
+  .project-title-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 992px) {
+    .project-title-grid {
+      grid-template-columns: 1.2fr 1fr;
+      align-items: baseline;
+    }
+  }
+
+  .project-title {
+    font-size: clamp(2.25rem, 4.5vw + 0.5rem, 4.5rem);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--color-white);
+  }
+
+  .project-lead-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .project-lead {
+    font-family: var(--font-serif);
+    font-size: clamp(1.2rem, 1.2vw + 0.4rem, 1.45rem);
+    line-height: 1.5;
+    color: var(--color-stone-100);
+    font-style: italic;
+  }
+
+  .project-description {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-stone-300);
+  }
+
+  .project-specs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--color-stone-500);
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--color-carbon-border);
+  }
+
+  .spec-label {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .spec-value {
+    color: var(--color-stone-300);
+  }
+
+  /* Gallery Grid System */
+  .project-gallery-curation {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3rem, 6vw, 6rem);
+  }
+
+  .gallery-figure {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .img-zoom-container {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-carbon-surface);
+    border-radius: var(--radius-xs);
+    border: 1px solid var(--color-carbon-border);
+  }
+
+  .gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s var(--ease-editorial);
+  }
+
+  .img-zoom-container:hover .gallery-image {
+    transform: scale(1.025);
+  }
+
+  .expand-trigger-btn {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    width: 44px;
+    height: 44px;
+    background-color: rgba(12, 13, 15, 0.75);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-xs);
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0.9;
+    transition: all var(--transition-fast);
+  }
+
+  .expand-trigger-btn:hover {
+    background-color: var(--color-terracotta);
+    border-color: var(--color-terracotta);
+    opacity: 1;
+    transform: scale(1.08);
+  }
+
+  .gallery-caption {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding-inline: 0.25rem;
+  }
+
+  .caption-num {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-terracotta);
+    font-family: var(--font-sans);
+  }
+
+  .caption-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .caption-title {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-white);
+  }
+
+  .caption-text p {
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--color-stone-500);
+  }
+
+  /* 2-Column Grid */
+  .gallery-grid-2col {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 4vw, 4rem);
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .gallery-grid-2col {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  /* Unequal Grid for Master Suite */
+  .gallery-grid-unequal {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 4vw, 4rem);
+    align-items: center;
+  }
+
+  @media (min-width: 900px) {
+    .gallery-grid-unequal {
+      grid-template-columns: 1.35fr 0.85fr;
+    }
+  }
+</style>
+
+<script>
+  // Wire expand buttons to Lightbox
+  function setupGalleryLightbox() {
+    const triggerButtons = document.querySelectorAll<HTMLButtonElement>('.expand-trigger-btn');
+    triggerButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const indexStr = btn.getAttribute('data-lightbox-index');
+        if (indexStr !== null) {
+          const index = parseInt(indexStr, 10);
+          if (typeof (window as any).openLightbox === 'function') {
+            (window as any).openLightbox(index);
+          }
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupGalleryLightbox);
+  } else {
+    setupGalleryLightbox();
+  }
+</script>

@@ -1,0 +1,117 @@
+---
+import { siteData } from '../data/siteData';
+---
+
+<section class="section-editorial-light method-section" id="metodo" aria-label="Metodo di lavoro dello studio">
+  <div class="site-container">
+    <div class="method-header">
+      <span class="section-header-tag reveal-on-scroll">Metodo e Approccio</span>
+      <h2 class="section-title reveal-on-scroll delay-100">
+        Come prende forma <span class="highlight-serif">il vostro spazio.</span>
+      </h2>
+      <p class="section-intro reveal-on-scroll delay-200">
+        Un percorso lineare e collaborativo in quattro passaggi, dove l'ascolto iniziale orienta ogni successiva decisione architettonica.
+      </p>
+    </div>
+
+    <div class="method-steps-grid">
+      {siteData.method.map((item, idx) => (
+        <div class={`method-card reveal-on-scroll delay-${(idx + 1) * 100}`}>
+          <div class="step-top">
+            <span class="step-num">{item.step}</span>
+            <div class="step-accent-line" aria-hidden="true"></div>
+          </div>
+          <h3 class="step-title">{item.title}</h3>
+          <p class="step-desc">{item.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .method-section {
+    border-top: 1px solid var(--color-ivory-border);
+    position: relative;
+  }
+
+  .method-header {
+    max-width: 800px;
+    margin-bottom: clamp(3rem, 5vw, 5rem);
+  }
+
+  .highlight-serif {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--color-terracotta);
+  }
+
+  .method-steps-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .method-steps-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .method-steps-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .method-card {
+    background-color: var(--color-white);
+    padding: clamp(2rem, 3vw, 2.5rem);
+    border: 1px solid var(--color-ivory-border);
+    border-radius: var(--radius-xs);
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .method-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-ivory-border-strong);
+    box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.06);
+  }
+
+  .step-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+
+  .step-num {
+    font-size: clamp(1.75rem, 2vw + 1rem, 2.25rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    color: var(--color-terracotta);
+    font-family: var(--font-sans);
+  }
+
+  .step-accent-line {
+    width: 32px;
+    height: 1px;
+    background-color: var(--color-ivory-border-strong);
+  }
+
+  .step-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--color-stone-900);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .step-desc {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-stone-700);
+  }
+</style>

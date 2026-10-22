@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Production build outputs
+dist/
+.astro/
+
+# Environment files
+.env
+.env.production
+.env.development
+.env.local
+.env.*.local
+
+# Testing & Reports
+test-results/
+playwright-report/
+blob-report/
+lighthouse-*.json
+
+# Netlify
+.netlify/
+
+# OS metadata & Editor folders
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Duplicate source folder (assets are tracked in src/assets/images/ and public/images/)
+/images/

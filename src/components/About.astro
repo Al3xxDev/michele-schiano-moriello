@@ -1,0 +1,235 @@
+---
+import { Image } from 'astro:assets';
+import { siteData } from '../data/siteData';
+import aboutImage from '../assets/images/Armonia-di-colori-e-funzionalita10.png';
+---
+
+<section class="section-editorial-light about-section" id="studio" aria-label="Profilo professionale e storia dello studio">
+  <div class="site-container">
+    <div class="about-grid">
+      <!-- Left Editorial Story -->
+      <div class="about-narrative">
+        <span class="section-header-tag reveal-on-scroll">Studio & Profilo</span>
+        
+        <h2 class="section-title reveal-on-scroll delay-100">
+          Dalla passione d'infanzia all'<span class="highlight-serif">interior design internazionale.</span>
+        </h2>
+
+        <p class="about-lead reveal-on-scroll delay-200">
+          {siteData.about.lead}
+        </p>
+
+        <div class="about-paragraphs reveal-on-scroll delay-300">
+          <p>{siteData.about.paragraphs[0]}</p>
+          <p>{siteData.about.paragraphs[1]}</p>
+          <div class="about-highlight-box">
+            <span class="highlight-tag">Collaborazione Internazionale</span>
+            <p>{siteData.about.paragraphs[2]}</p>
+          </div>
+          <p>{siteData.about.paragraphs[3]}</p>
+        </div>
+
+        <div class="about-milestones reveal-on-scroll delay-300">
+          <div class="milestone-item">
+            <span class="milestone-year">2005</span>
+            <span class="milestone-desc">Inizio percorso professionale & ottimizzazione spazi</span>
+          </div>
+          <div class="milestone-item">
+            <span class="milestone-year">2007</span>
+            <span class="milestone-desc">Collaborazione con Pietro Del Vaglio (Italia, USA, Svizzera, Bulgaria)</span>
+          </div>
+          <div class="milestone-item">
+            <span class="milestone-year">Oggi</span>
+            <span class="milestone-desc">Specializzazione in Home Design, Decor & Progettazione Sartoriale</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Visual Feature -->
+      <div class="about-media-col reveal-on-scroll delay-200">
+        <div class="about-image-card">
+          <div class="about-image-frame">
+            <Image 
+              src={aboutImage} 
+              alt="Angolo studio con scrittoio in legno e scaffalatura su misura progettato da Michele Schiano Moriello"
+              widths={[480, 800, 1024]}
+              sizes="(min-width: 992px) 40vw, 95vw"
+              class="about-img"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="about-caption-card">
+            <div class="caption-decor" aria-hidden="true"></div>
+            <p class="caption-quote">
+              “L'obiettivo è creare ambienti unici, armoniosi e coerenti, dove ogni dettaglio rifletta davvero la personalità di chi li abita.”
+            </p>
+            <span class="caption-author">Michele Schiano Moriello</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-section {
+    border-top: 1px solid var(--color-ivory-border);
+    position: relative;
+    background-color: var(--color-alabaster);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(3rem, 6vw, 6rem);
+    align-items: start;
+  }
+
+  @media (min-width: 992px) {
+    .about-grid {
+      grid-template-columns: 1.25fr 0.85fr;
+    }
+  }
+
+  .about-narrative {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .highlight-serif {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--color-terracotta);
+  }
+
+  .about-lead {
+    font-family: var(--font-serif);
+    font-size: clamp(1.2rem, 1.2vw + 0.4rem, 1.45rem);
+    line-height: 1.5;
+    color: var(--color-stone-900);
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  .about-paragraphs {
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--color-stone-700);
+    margin-bottom: 2.5rem;
+  }
+
+  .about-highlight-box {
+    background-color: var(--color-white);
+    border-left: 3px solid var(--color-terracotta);
+    padding: 1.75rem 2rem;
+    margin-block: 0.5rem;
+    border-radius: var(--radius-xs);
+    box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.03);
+  }
+
+  .highlight-tag {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-terracotta);
+    margin-bottom: 0.5rem;
+  }
+
+  .about-highlight-box p {
+    color: var(--color-stone-900);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+  }
+
+  /* Milestones Timeline */
+  .about-milestones {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-ivory-border-strong);
+  }
+
+  .milestone-item {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+  }
+
+  .milestone-year {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-stone-900);
+    min-width: 60px;
+    font-family: var(--font-sans);
+  }
+
+  .milestone-desc {
+    font-size: 0.9375rem;
+    color: var(--color-stone-700);
+  }
+
+  /* Right Media Card */
+  .about-media-col {
+    position: sticky;
+    top: 6rem;
+  }
+
+  .about-image-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .about-image-frame {
+    border-radius: var(--radius-xs);
+    overflow: hidden;
+    border: 1px solid var(--color-ivory-border-strong);
+    background-color: var(--color-white);
+    box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.08);
+  }
+
+  .about-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .about-caption-card {
+    background-color: var(--color-white);
+    padding: 1.75rem;
+    border: 1px solid var(--color-ivory-border);
+    border-radius: var(--radius-xs);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .caption-decor {
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-terracotta);
+  }
+
+  .caption-quote {
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    line-height: 1.5;
+    color: var(--color-stone-900);
+    font-style: italic;
+  }
+
+  .caption-author {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-stone-500);
+  }
+</style>

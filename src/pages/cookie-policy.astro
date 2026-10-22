@@ -1,0 +1,222 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { siteData } from '../data/siteData';
+---
+
+<BaseLayout
+  title="Informativa sui Cookie | Michele Schiano Moriello"
+  description="Informativa tecnica sui cookie e sugli strumenti di tracciamento ai sensi delle Linee Guida del Garante Privacy."
+  canonicalPath="/cookie-policy"
+>
+  <Header slot="header" />
+
+  <article class="legal-page-section">
+    <div class="site-container legal-container">
+      <header class="legal-header">
+        <span class="section-header-tag">Conformità ePrivacy</span>
+        <h1 class="legal-title">Informativa Tecnica sui Cookie</h1>
+        <p class="legal-subtitle">
+          Informazioni trasparenti sull'assenza di cookie di profilazione e sull'impiego esclusivo di tecnologie strettamente necessarie alla navigazione.
+        </p>
+        <div class="legal-meta">
+          <span>Ultimo aggiornamento: Ottobre 2026</span>
+          <span class="meta-dot">•</span>
+          <span>Stato: Zero Cookie di Profilazione</span>
+        </div>
+      </header>
+
+      <div class="legal-body">
+        <section class="legal-block">
+          <h2>1. Cosa sono i Cookie</h2>
+          <p>
+            I cookie sono stringhe di testo di piccole dimensioni che i siti web inviano al terminale dell'utente (solitamente al browser), dove vengono memorizzati per essere poi ritrasmessi agli stessi siti alla successiva visita del medesimo utente.
+          </p>
+          <p>
+            I cookie possono essere distinti in <strong>cookie tecnici</strong> (necessari al funzionamento del sito o all'erogazione di un servizio esplicitamente richiesto dall'utente) e <strong>cookie di profilazione</strong> (usati per ricondurre a soggetti determinati o identificabili specifiche azioni o schemi comportamentali ricorrenti, al fine di inviare messaggi pubblicitari mirati).
+          </p>
+        </section>
+
+        <section class="legal-block">
+          <h2>2. Cookie e Tracciatori Utilizzati su Questo Sito</h2>
+          <div class="notice-card-compliant">
+            <div class="notice-badge">Politica No-Tracking</div>
+            <p>
+              <strong>Nessun cookie di profilazione, marketing o tracciamento comportamentale viene utilizzato su questo sito web.</strong>
+            </p>
+          </div>
+          <p>
+            In applicazione delle <em>«Linee guida cookie e altri strumenti di tracciamento»</em> adottate dal Garante per la Protezione dei Dati Personali in data 10 giugno 2021 (doc. web n. 9677876):
+          </p>
+          <ul>
+            <li><strong>Nessun cookie analitico con trasferimento dati a terzi:</strong> Non utilizziamo Google Analytics, pixel di Meta, tracker di LinkedIn o altri strumenti di telemetria.</li>
+            <li><strong>Nessun cookie di terze parti non autorizzato:</strong> I contenuti multimediali e le risorse grafiche sono serviti direttamente dal server di erogazione del sito. I font sono self-hosted.</li>
+            <li><strong>Assenza di obbligo del banner preventivo:</strong> Poiché non vengono installati cookie o tracciatori per i quali sia richiesto il preventivo consenso dell'interessato ai sensi dell'art. 122 del Codice Privacy, il sito non visualizza alcun banner cookie intrusivo, garantendo una consultazione fluida, immediata e nel pieno rispetto della privacy.</li>
+          </ul>
+        </section>
+
+        <section class="legal-block">
+          <h2>3. Eventuali Cookie Tecnici</h2>
+          <p>
+            L'infrastruttura di hosting o il web server potrebbero temporaneamente generare cookie di sessione strettamente tecnici (ad esempio cookie per il bilanciamento del carico di rete o per la sicurezza anti-DDoS e la protezione da bot malevoli). Tali strumenti non memorizzano dati personali identificabili e decadono automaticamente al termine della sessione di navigazione.
+          </p>
+          <p>
+            Per l'installazione di tali cookie tecnici non è richiesto il preventivo consenso degli utenti, fermo restando l'obbligo di rendere la presente informativa.
+          </p>
+        </section>
+
+        <section class="legal-block">
+          <h2>4. Gestione delle Preferenze del Browser</h2>
+          <p>
+            L'utente può comunque gestire o disattivare i cookie direttamente attraverso le impostazioni del proprio browser. La disabilitazione dei cookie tecnici potrebbe tuttavia limitare alcune funzionalità di navigazione.
+          </p>
+          <p>
+            Le istruzioni per i principali browser sono reperibili ai seguenti indirizzi:
+          </p>
+          <ul>
+            <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer">Google Chrome</a></li>
+            <li><a href="https://support.mozilla.org/it/kb/protezione-antitracciamento-avanzata-firefox-desktop" target="_blank" rel="noopener noreferrer">Mozilla Firefox</a></li>
+            <li><a href="https://support.apple.com/it-it/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer">Apple Safari</a></li>
+            <li><a href="https://support.microsoft.com/it-it/windows/gestire-i-cookie-in-microsoft-edge-168dab11-0753-043d-7c16-ede5947fc64d" target="_blank" rel="noopener noreferrer">Microsoft Edge</a></li>
+          </ul>
+        </section>
+
+        <section class="legal-block">
+          <h2>5. Titolare e Recapiti</h2>
+          <p>
+            Titolare del trattamento è <strong>Michele Schiano Moriello</strong>, con sede in Corso Umberto I, 47 — 80070 Monte di Procida (NA). Recapito: <a href={siteData.professional.phoneHref}>+39 338 101 3392</a>.
+          </p>
+        </section>
+      </div>
+
+      <div class="legal-back-nav">
+        <a href="/" class="btn btn-outline-dark">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Torna alla Homepage</span>
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .legal-page-section {
+    background-color: var(--color-ivory);
+    color: var(--color-stone-900);
+    padding-top: clamp(7rem, 12vh, 10rem);
+    padding-bottom: clamp(4rem, 8vw, 8rem);
+    min-height: 80vh;
+  }
+
+  .legal-container {
+    max-width: 860px;
+    margin-inline: auto;
+  }
+
+  .legal-header {
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-ivory-border-strong);
+  }
+
+  .legal-title {
+    font-size: clamp(2rem, 3.5vw + 0.5rem, 3.25rem);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    color: var(--color-stone-900);
+    margin-block: 1rem;
+  }
+
+  .legal-subtitle {
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--color-stone-700);
+    margin-bottom: 1.25rem;
+  }
+
+  .legal-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.8125rem;
+    color: var(--color-stone-500);
+  }
+
+  .meta-dot {
+    opacity: 0.4;
+  }
+
+  .legal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .legal-block h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--color-stone-900);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-ivory-border);
+  }
+
+  .legal-block p {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--color-stone-700);
+    margin-bottom: 1rem;
+  }
+
+  .legal-block ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .legal-block li {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-stone-700);
+  }
+
+  .legal-block a {
+    color: var(--color-terracotta);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .notice-card-compliant {
+    background-color: var(--color-white);
+    border-left: 3px solid var(--color-terracotta);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: var(--radius-xs);
+    box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.03);
+  }
+
+  .notice-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-terracotta);
+    margin-bottom: 0.35rem;
+  }
+
+  .legal-back-nav {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-ivory-border);
+  }
+</style>

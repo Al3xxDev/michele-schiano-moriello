@@ -1,0 +1,382 @@
+---
+import { siteData } from '../data/siteData';
+
+// We pass photo list metadata to lightbox
+const photos = siteData.photos;
+---
+
+<div 
+  id="project-lightbox" 
+  class="lightbox-overlay" 
+  role="dialog" 
+  aria-modal="true" 
+  aria-label="Visualizzatore galleria fotografica ad alta risoluzione"
+  hidden
+>
+  <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+
+  <div class="lightbox-container">
+    <!-- Top Bar Controls -->
+    <div class="lightbox-topbar">
+      <div class="lightbox-counter" id="lightbox-counter" aria-live="polite">
+        <span id="lightbox-current-idx">1</span> / <span id="lightbox-total-idx">{photos.length}</span>
+      </div>
+
+      <div class="lightbox-project-badge">
+        <span class="badge-dot" aria-hidden="true"></span>
+        <span class="badge-title">{siteData.project.title}</span>
+      </div>
+
+      <button 
+        type="button" 
+        id="lightbox-close-btn" 
+        class="lightbox-control-btn" 
+        aria-label="Chiudi visualizzatore (Esc)"
+        title="Chiudi visualizzatore (Esc)"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Main Viewport Area -->
+    <div class="lightbox-stage" id="lightbox-stage">
+      <button 
+        type="button" 
+        id="lightbox-prev-btn" 
+        class="lightbox-nav-btn prev" 
+        aria-label="Foto precedente (Freccia sinistra)"
+        title="Foto precedente"
+      >
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <div class="lightbox-image-wrapper">
+        <img 
+          id="lightbox-active-img" 
+          src="" 
+          alt="" 
+          class="lightbox-img" 
+        />
+      </div>
+
+      <button 
+        type="button" 
+        id="lightbox-next-btn" 
+        class="lightbox-nav-btn next" 
+        aria-label="Foto successiva (Freccia destra)"
+        title="Foto successiva"
+      >
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Bottom Caption Bar -->
+    <div class="lightbox-caption-bar">
+      <h3 id="lightbox-photo-title" class="lightbox-title"></h3>
+      <p id="lightbox-photo-caption" class="lightbox-caption"></p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(10, 11, 13, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-editorial);
+  }
+
+  .lightbox-overlay.is-active {
+    opacity: 1;
+  }
+
+  .lightbox-overlay[hidden] {
+    display: none;
+  }
+
+  .lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+  }
+
+  .lightbox-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: clamp(1rem, 2vw, 2rem);
+  }
+
+  .lightbox-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    color: var(--color-white);
+  }
+
+  .lightbox-counter {
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--color-stone-300);
+    min-width: 60px;
+  }
+
+  .lightbox-project-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-stone-300);
+  }
+
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--color-terracotta);
+  }
+
+  .lightbox-control-btn,
+  .lightbox-nav-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-xs);
+    border: 1px solid var(--color-carbon-border);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .lightbox-control-btn:hover,
+  .lightbox-nav-btn:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: var(--color-white);
+    transform: scale(1.05);
+  }
+
+  .lightbox-stage {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    gap: 1rem;
+    padding-block: 0.5rem;
+  }
+
+  .lightbox-image-wrapper {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .lightbox-img {
+    max-width: 100%;
+    max-height: calc(100vh - 180px);
+    object-fit: contain;
+    border-radius: var(--radius-xs);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    user-select: none;
+    transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+  }
+
+  .lightbox-caption-bar {
+    text-align: center;
+    max-width: 800px;
+    margin-inline: auto;
+    padding-top: 1rem;
+    color: var(--color-white);
+  }
+
+  .lightbox-title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+
+  .lightbox-caption {
+    font-size: 0.875rem;
+    color: var(--color-stone-300);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .lightbox-nav-btn {
+      position: absolute;
+      bottom: 2rem;
+      z-index: 20;
+    }
+    .lightbox-nav-btn.prev {
+      left: 1rem;
+    }
+    .lightbox-nav-btn.next {
+      right: 1rem;
+    }
+    .lightbox-project-badge {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  import { siteData } from '../data/siteData';
+
+  const photos = siteData.photos;
+  let currentIndex = 0;
+  let previouslyFocusedElement: HTMLElement | null = null;
+
+  const lightbox = document.getElementById('project-lightbox');
+  const backdrop = document.getElementById('lightbox-backdrop');
+  const closeBtn = document.getElementById('lightbox-close-btn');
+  const prevBtn = document.getElementById('lightbox-prev-btn');
+  const nextBtn = document.getElementById('lightbox-next-btn');
+  const activeImg = document.getElementById('lightbox-active-img') as HTMLImageElement;
+  const currentIdxEl = document.getElementById('lightbox-current-idx');
+  const photoTitleEl = document.getElementById('lightbox-photo-title');
+  const photoCaptionEl = document.getElementById('lightbox-photo-caption');
+  const stage = document.getElementById('lightbox-stage');
+
+  function updateLightboxPhoto(index: number) {
+    if (!photos[index]) return;
+    currentIndex = index;
+    const photo = photos[index];
+
+    if (activeImg) {
+      activeImg.style.opacity = '0';
+      activeImg.style.transform = 'scale(0.98)';
+      setTimeout(() => {
+        activeImg.src = `/images/${photo.filename}`;
+        activeImg.alt = photo.alt;
+        activeImg.style.opacity = '1';
+        activeImg.style.transform = 'scale(1)';
+      }, 150);
+    }
+
+    if (currentIdxEl) currentIdxEl.textContent = String(index + 1);
+    if (photoTitleEl) photoTitleEl.textContent = photo.title;
+    if (photoCaptionEl) photoCaptionEl.textContent = photo.caption;
+  }
+
+  export function openLightbox(index: number) {
+    if (!lightbox) return;
+    previouslyFocusedElement = document.activeElement as HTMLElement;
+    currentIndex = index;
+    updateLightboxPhoto(currentIndex);
+
+    lightbox.removeAttribute('hidden');
+    requestAnimationFrame(() => {
+      lightbox.classList.add('is-active');
+    });
+    document.body.style.overflow = 'hidden';
+    closeBtn?.focus();
+  }
+
+  export function closeLightbox() {
+    if (!lightbox) return;
+    lightbox.classList.remove('is-active');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      lightbox.setAttribute('hidden', '');
+      previouslyFocusedElement?.focus();
+    }, 300);
+  }
+
+  function showNext() {
+    const nextIdx = (currentIndex + 1) % photos.length;
+    updateLightboxPhoto(nextIdx);
+  }
+
+  function showPrev() {
+    const prevIdx = (currentIndex - 1 + photos.length) % photos.length;
+    updateLightboxPhoto(prevIdx);
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox || lightbox.hasAttribute('hidden')) return;
+
+    if (e.key === 'Escape') {
+      closeLightbox();
+    } else if (e.key === 'ArrowRight') {
+      showNext();
+    } else if (e.key === 'ArrowLeft') {
+      showPrev();
+    } else if (e.key === 'Tab') {
+      // Focus trapping
+      const focusableElements = lightbox.querySelectorAll<HTMLElement>(
+        'button:not([disabled])'
+      );
+      const firstEl = focusableElements[0];
+      const lastEl = focusableElements[focusableElements.length - 1];
+
+      if (e.shiftKey && document.activeElement === firstEl) {
+        lastEl?.focus();
+        e.preventDefault();
+      } else if (!e.shiftKey && document.activeElement === lastEl) {
+        firstEl?.focus();
+        e.preventDefault();
+      }
+    }
+  });
+
+  // Touch Swipe support for mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  stage?.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  stage?.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleGesture();
+  }, { passive: true });
+
+  function handleGesture() {
+    const diff = touchEndX - touchStartX;
+    if (Math.abs(diff) > 50) {
+      if (diff < 0) {
+        showNext(); // Swipe left -> next
+      } else {
+        showPrev(); // Swipe right -> prev
+      }
+    }
+  }
+
+  closeBtn?.addEventListener('click', closeLightbox);
+  backdrop?.addEventListener('click', closeLightbox);
+  prevBtn?.addEventListener('click', showPrev);
+  nextBtn?.addEventListener('click', showNext);
+
+  // Expose opener to window for gallery triggers
+  (window as any).openLightbox = openLightbox;
+</script>

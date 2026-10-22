@@ -1,0 +1,295 @@
+---
+import { siteData } from '../data/siteData';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer" aria-label="Piè di pagina">
+  <div class="site-container">
+    <div class="footer-top-grid">
+      <!-- Brand & Studio Description -->
+      <div class="footer-brand-col">
+        <a href="/" class="footer-brand">
+          <span class="brand-title">MICHELE SCHIANO MORIELLO</span>
+          <span class="brand-desc">INTERIOR DESIGNER</span>
+        </a>
+
+        <p class="footer-mission">
+          Progettazione d'interni sartoriale, ottimizzazione degli spazi e home decor. Creiamo ambienti armoniosi che riflettono l'identità autentica di chi li abita.
+        </p>
+
+        <div class="footer-credentials">
+          <span class="cred-item">Attività dal 2005</span>
+          <span class="cred-separator" aria-hidden="true">•</span>
+          <span class="cred-item">Monte di Procida & Napoli</span>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <div class="footer-nav-col">
+        <span class="footer-col-title">Navigazione</span>
+        <ul class="footer-links-list">
+          {siteData.navLinks.map((link) => (
+            <li>
+              <a href={link.href} class="footer-link">{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact & Coordinates -->
+      <div class="footer-contact-col">
+        <span class="footer-col-title">Studio & Recapiti</span>
+        <div class="footer-contact-items">
+          <div class="contact-line">
+            <span class="line-label">Telefono</span>
+            <a href={siteData.professional.phoneHref} class="footer-link-highlight">
+              {siteData.professional.phone}
+            </a>
+          </div>
+
+          <div class="contact-line">
+            <span class="line-label">Sede</span>
+            <address class="footer-address">
+              {siteData.professional.address.street}<br />
+              {siteData.professional.address.postalCode} {siteData.professional.address.locality} ({siteData.professional.address.province})
+            </address>
+          </div>
+
+          <div class="contact-line">
+            <span class="line-label">Profilo Professionale</span>
+            <a 
+              href={siteData.professional.houzzProfileUrl} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="footer-external-link"
+            >
+              <span>Scheda Ufficiale Houzz</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar: Legal & Privacy compliance -->
+    <div class="footer-bottom-bar">
+      <div class="footer-legal-copy">
+        <span>© {currentYear} Michele Schiano Moriello. Tutti i diritti riservati.</span>
+        <span class="privacy-note">Sito statico ad alta protezione: zero tracker di terze parti, zero cookie di profilazione.</span>
+      </div>
+
+      <nav class="footer-legal-nav" aria-label="Informative legali">
+        <a href="/privacy-policy" class="legal-link">Privacy Policy</a>
+        <span class="legal-separator" aria-hidden="true">•</span>
+        <a href="/cookie-policy" class="legal-link">Cookie Policy</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: #070809;
+    color: var(--color-stone-300);
+    border-top: 1px solid var(--color-carbon-border);
+    padding-top: clamp(4rem, 6vw, 6rem);
+    padding-bottom: 2.5rem;
+    position: relative;
+  }
+
+  .footer-top-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding-bottom: clamp(3rem, 5vw, 5rem);
+    border-bottom: 1px solid var(--color-carbon-border);
+  }
+
+  @media (min-width: 768px) {
+    .footer-top-grid {
+      grid-template-columns: 2fr 1fr 1.5fr;
+      gap: 4rem;
+    }
+  }
+
+  .footer-brand {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    color: var(--color-white);
+    margin-bottom: 1.5rem;
+    text-decoration: none;
+    transition: opacity var(--transition-fast);
+  }
+
+  .footer-brand:hover {
+    opacity: 0.85;
+  }
+
+  .brand-title {
+    font-size: clamp(0.9375rem, 0.35vw + 0.85rem, 1.125rem);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--color-white);
+    line-height: 1.15;
+  }
+
+  .brand-desc {
+    font-size: clamp(0.625rem, 0.15vw + 0.58rem, 0.6875rem);
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    color: var(--color-stone-500);
+    line-height: 1;
+  }
+
+  .footer-mission {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-stone-500);
+    max-width: 42ch;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-credentials {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.8125rem;
+    color: var(--color-terracotta);
+  }
+
+  .cred-separator {
+    opacity: 0.4;
+  }
+
+  .footer-col-title {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-white);
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-links-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .footer-link {
+    font-size: 0.875rem;
+    color: var(--color-stone-500);
+    transition: color var(--transition-fast);
+  }
+
+  .footer-link:hover {
+    color: var(--color-white);
+  }
+
+  .footer-contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .contact-line {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .line-label {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-stone-500);
+  }
+
+  .footer-link-highlight {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-white);
+    transition: color var(--transition-fast);
+  }
+
+  .footer-link-highlight:hover {
+    color: var(--color-terracotta);
+  }
+
+  .footer-address {
+    font-style: normal;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--color-stone-300);
+  }
+
+  .footer-external-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.875rem;
+    color: var(--color-terracotta);
+    transition: color var(--transition-fast);
+  }
+
+  .footer-external-link:hover {
+    color: var(--color-white);
+  }
+
+  /* Bottom Bar */
+  .footer-bottom-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-top: 2rem;
+    font-size: 0.8125rem;
+    color: var(--color-stone-500);
+  }
+
+  @media (min-width: 768px) {
+    .footer-bottom-bar {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  .footer-legal-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .privacy-note {
+    font-size: 0.75rem;
+    color: #a5a39d;
+  }
+
+  .footer-legal-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .legal-link {
+    color: var(--color-stone-500);
+    transition: color var(--transition-fast);
+  }
+
+  .legal-link:hover {
+    color: var(--color-white);
+  }
+
+  .legal-separator {
+    opacity: 0.4;
+  }
+</style>

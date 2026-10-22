@@ -1,0 +1,403 @@
+---
+import { siteData } from '../data/siteData';
+---
+
+<section class="section-editorial-light reviews-section" id="recensioni" aria-label="Recensioni dei clienti">
+  <div class="site-container">
+    <!-- Header with overall ratings -->
+    <div class="reviews-header">
+      <div class="header-left">
+        <span class="section-header-tag reveal-on-scroll">Testimonianze</span>
+        <h2 class="section-title reveal-on-scroll delay-100">
+          Le parole di chi ha scelto <span class="highlight-serif">il suo lavoro.</span>
+        </h2>
+        <p class="section-intro reveal-on-scroll delay-200">
+          Esperienze dirette di committenti che hanno affidato a Michele Schiano Moriello la trasformazione della propria casa.
+        </p>
+      </div>
+
+      <!-- Rating Scoreboard -->
+      <div class="rating-scoreboard reveal-on-scroll delay-200">
+        <div class="score-overall">
+          <div class="score-stars" aria-label="Valutazione 5 stelle su 5">
+            ★★★★★
+          </div>
+          <div class="score-number-group">
+            <span class="score-value">{siteData.reviewsSummary.rating}</span>
+            <span class="score-max">/{siteData.reviewsSummary.maxRating}</span>
+          </div>
+          <span class="score-total">Su 4 recensioni certificate</span>
+        </div>
+
+        <div class="score-breakdown">
+          {siteData.reviewsSummary.categories.map((cat) => (
+            <div class="breakdown-item">
+              <span class="cat-name">{cat.name}</span>
+              <div class="cat-score-line">
+                <span class="cat-score">{cat.score}</span>
+                <span class="cat-star">★</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <a 
+          href={siteData.professional.houzzProfileUrl} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="houzz-attribution-link"
+        >
+          <span>{siteData.reviewsSummary.source}</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Reviews Grid -->
+    <div class="reviews-grid">
+      {siteData.reviews.map((rev, idx) => (
+        <article class={`review-card reveal-on-scroll delay-${(idx % 2 + 1) * 100}`} id={`review-${rev.id}`}>
+          <div class="card-top">
+            <div class="review-stars" aria-label={`Valutazione: ${rev.rating} su 5 stelle`}>
+              ★★★★★
+            </div>
+            <time class="review-date" datetime={rev.date}>{rev.date}</time>
+          </div>
+
+          <blockquote class="review-quote">
+            <p class="quote-lead">“{rev.quote}”</p>
+          </blockquote>
+
+          <div class="review-full-body" id={`body-${rev.id}`} hidden>
+            <p class="full-text">{rev.fullText}</p>
+          </div>
+
+          <div class="card-footer">
+            <div class="author-info">
+              <h3 class="author-name">{rev.author}</h3>
+              <a 
+                href={rev.profileUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="author-profile-link"
+                aria-label={`Profilo utente di ${rev.author} su Houzz`}
+              >
+                <span>Profilo su Houzz</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </a>
+            </div>
+
+            <button 
+              type="button" 
+              class="review-toggle-btn" 
+              aria-expanded="false" 
+              aria-controls={`body-${rev.id}`}
+            >
+              <span class="toggle-text">Leggi completa</span>
+              <svg class="toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews-section {
+    border-top: 1px solid var(--color-ivory-border);
+    position: relative;
+    background-color: var(--color-ivory);
+  }
+
+  .reviews-header {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+    align-items: start;
+  }
+
+  @media (min-width: 992px) {
+    .reviews-header {
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: 5rem;
+    }
+  }
+
+  .highlight-serif {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--color-terracotta);
+  }
+
+  /* Scoreboard */
+  .rating-scoreboard {
+    background-color: var(--color-white);
+    padding: clamp(2rem, 3vw, 2.75rem);
+    border: 1px solid var(--color-ivory-border);
+    border-radius: var(--radius-xs);
+    box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .score-overall {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--color-ivory-border);
+  }
+
+  .score-stars {
+    color: #e09322;
+    font-size: 1.25rem;
+    letter-spacing: 2px;
+  }
+
+  .score-number-group {
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
+  }
+
+  .score-value {
+    font-size: clamp(2.5rem, 3vw + 1rem, 3.25rem);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-stone-900);
+    letter-spacing: -0.04em;
+  }
+
+  .score-max {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--color-stone-500);
+  }
+
+  .score-total {
+    font-size: 0.875rem;
+    color: var(--color-stone-500);
+  }
+
+  .score-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .breakdown-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+  }
+
+  .cat-name {
+    color: var(--color-stone-700);
+  }
+
+  .cat-score-line {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-weight: 600;
+    color: var(--color-stone-900);
+  }
+
+  .cat-star {
+    color: #e09322;
+    font-size: 0.75rem;
+  }
+
+  .houzz-attribution-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--color-stone-500);
+    padding-top: 0.5rem;
+    transition: color var(--transition-fast);
+  }
+
+  .houzz-attribution-link:hover {
+    color: var(--color-terracotta);
+  }
+
+  /* Grid of reviews */
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  @media (min-width: 768px) {
+    .reviews-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .review-card {
+    background-color: var(--color-white);
+    padding: clamp(2rem, 3vw, 2.5rem);
+    border: 1px solid var(--color-ivory-border);
+    border-radius: var(--radius-xs);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+    transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+  }
+
+  .review-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-ivory-border-strong);
+    box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.05);
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .review-stars {
+    color: #e09322;
+    font-size: 1rem;
+    letter-spacing: 2px;
+  }
+
+  .review-date {
+    font-size: 0.8125rem;
+    color: var(--color-stone-500);
+  }
+
+  .review-quote {
+    flex: 1;
+  }
+
+  .quote-lead {
+    font-family: var(--font-serif);
+    font-size: 1.1875rem;
+    line-height: 1.55;
+    color: var(--color-stone-900);
+    font-style: italic;
+  }
+
+  .review-full-body {
+    padding-top: 1rem;
+    border-top: 1px dashed var(--color-ivory-border-strong);
+  }
+
+  .review-full-body[hidden] {
+    display: none;
+  }
+
+  .full-text {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--color-stone-700);
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-ivory-border);
+    gap: 1rem;
+  }
+
+  .author-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .author-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-stone-900);
+  }
+
+  .author-profile-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    color: var(--color-stone-500);
+    transition: color var(--transition-fast);
+  }
+
+  .author-profile-link:hover {
+    color: var(--color-terracotta);
+  }
+
+  .review-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-terracotta);
+    padding: 0.4rem 0.6rem;
+    border-radius: var(--radius-xs);
+    transition: background-color var(--transition-fast);
+    cursor: pointer;
+  }
+
+  .review-toggle-btn:hover {
+    background-color: var(--color-terracotta-soft);
+  }
+
+  .toggle-icon {
+    transition: transform var(--transition-fast);
+  }
+
+  .review-toggle-btn[aria-expanded="true"] .toggle-icon {
+    transform: rotate(180deg);
+  }
+</style>
+
+<script>
+  function setupReviewsToggle() {
+    const toggleButtons = document.querySelectorAll<HTMLButtonElement>('.review-toggle-btn');
+    toggleButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+        const targetId = btn.getAttribute('aria-controls');
+        if (!targetId) return;
+        const targetEl = document.getElementById(targetId);
+        const toggleText = btn.querySelector('.toggle-text');
+
+        if (isExpanded) {
+          btn.setAttribute('aria-expanded', 'false');
+          targetEl?.setAttribute('hidden', '');
+          if (toggleText) toggleText.textContent = 'Leggi completa';
+        } else {
+          btn.setAttribute('aria-expanded', 'true');
+          targetEl?.removeAttribute('hidden');
+          if (toggleText) toggleText.textContent = 'Riduci testo';
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupReviewsToggle);
+  } else {
+    setupReviewsToggle();
+  }
+</script>
