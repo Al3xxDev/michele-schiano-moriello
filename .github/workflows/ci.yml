@@ -6,10 +6,16 @@ on:
   pull_request:
     branches: [ main ]
 
+# Cancel any previously running CI executions on the same branch when new commits are pushed
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build-and-test:
     name: Build & E2E Accessibility Testing
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
       - name: Check out repository
@@ -25,6 +31,9 @@ jobs:
         run: npm ci
 
       - name: Install Playwright Chromium with dependencies
+        timeout-minutes: 5
+        env:
+          DEBIAN_FRONTEND: noninteractive
         run: npx playwright install --with-deps chromium
 
       - name: Build static site
